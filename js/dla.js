@@ -1,7 +1,7 @@
 var stats, scene, camera, renderer, controls;
 var worker = new Worker('js/worker.js');
 var geometry, pointcloud;
-var nParticles = 30000, nextParticleIndex;
+var nParticles = 90000, nextParticleIndex;
 var spawnRadiusLimit = 140;
 var sphere;
 var container;
@@ -147,7 +147,7 @@ function init() {
             }
             pointcloud.geometry.verticesNeedUpdate = true;
 
-            var dFrac = Math.log(nextParticleIndex)/Math.log(response.data.maxParticleDistanceS/2);
+            var dFrac = Math.log(nextParticleIndex)/Math.log(response.data.maxParticleDistanceS);
             if( dFrac<5 && dFrac>1 && (response.data.positions.length>0)){
                 chart.series[0].addPoint(dFrac);
                 if(chart.series[0].data.length>50)

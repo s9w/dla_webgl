@@ -64,7 +64,7 @@ function getDockPos(){
             position[2] += math.randomInt(2)*2-1;
 
         // run out of sphere? reset
-        if( (position[0]*position[0] + position[1]*position[1] + position[2]*position[2]) > (spawnRadius*spawnRadius) )
+        if( (position[0]*position[0] + position[1]*position[1] + position[2]*position[2]) > Math.pow(spawnRadius+15,2) )
             position = getStartPos(spawnRadius);
     }
 
@@ -80,7 +80,7 @@ function getDockPos(){
     var radius2 = position[0]*position[0] + position[1]*position[1] + position[2]*position[2];
     if( radius2 > (maxParticleDistance*maxParticleDistance) ){
         maxParticleDistance = Math.sqrt(radius2);
-        spawnRadius = maxParticleDistance+10;
+        spawnRadius = maxParticleDistance+15;
     }
     return position;
 }
