@@ -13,7 +13,7 @@ var updateInterval = 100;
 function init(spawnRadiusLimitP){
     nParticles = 1;
     maxParticleDistance = 0.0;
-    gridSize = spawnRadiusLimitP*2+1+20;
+    gridSize = spawnRadiusLimitP*2+1+40;
     offset = Math.floor(gridSize/2);
     spawnRadius = maxParticleDistance+10;
 
@@ -50,6 +50,7 @@ function getStartPos(radius){
 function getDockPos(){
     // start somewhere on a sphere from the origin
     position = getStartPos(spawnRadius);
+    var startBackup = position.slice();
 
     // walk until on neighbor site
     while(latticeNB[(position[0]+offset)*gridSize*gridSize + (position[1]+offset)*gridSize + (position[2]+offset)] == 0){
@@ -63,9 +64,9 @@ function getDockPos(){
         else
             position[2] += math.randomInt(2)*2-1;
 
-        // run out of sphere? reset
-        if( (position[0]*position[0] + position[1]*position[1] + position[2]*position[2]) > Math.pow(spawnRadius+15,2) )
-            position = getStartPos(spawnRadius);
+        // run out of sphere? back to initial start
+        if( (position[0]*position[0] + position[1]*position[1] + position[2]*position[2]) > Math.pow(spawnRadius+20,2) )
+            position = startBackup.slice();
     }
 
     // mark neighbor spots of found position

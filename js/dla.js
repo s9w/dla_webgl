@@ -1,7 +1,7 @@
 var stats, scene, camera, renderer, controls;
 var worker = new Worker('js/worker.js');
 var geometry, pointcloud;
-var nParticles = 90000, nextParticleIndex;
+var nParticles = 120000, nextParticleIndex;
 var spawnRadiusLimit = 140;
 var sphere;
 var container;
@@ -21,7 +21,7 @@ function init_gui(container){
     var gui = new dat.GUI({ autoPlace: false });
 
     // particles per sec
-    var controller = gui.add(params, "nParticlesPSec", 0, 1000);
+    var controller = gui.add(params, "nParticlesPSec", 0, 2000);
     controller.name("Particles/sec");
     controller.step(1);
 
@@ -141,6 +141,7 @@ function init() {
             params.reset = reset;
         }
         else{
+            console.log(response.data.positions.length);
             for(var i=0; i< response.data.positions.length; ++i){
                 pointcloud.geometry.vertices[nextParticleIndex].fromArray(response.data.positions[i]);
                 nextParticleIndex++;
