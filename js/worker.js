@@ -2,7 +2,6 @@ importScripts('https://cdnjs.cloudflare.com/ajax/libs/mathjs/1.6.0/math.min.js')
 
 var gridSize, offset;
 var spawnRadius, spawnRadiusLimit, maxParticleDistance;
-var furthestPos = [];
 var position = [];
 var latticeNB=[];
 var t0=-1, t1=-1;
@@ -80,7 +79,6 @@ function getDockPos(){
     if( radius2 > (maxParticleDistance*maxParticleDistance) ){
         maxParticleDistance = Math.sqrt(radius2);
         spawnRadius = maxParticleDistance+10;
-        furthestPos = position.slice();
     }
     return position;
 }
@@ -90,8 +88,7 @@ function respond(doMore){
         type: 'result',
         positions: positions,
         maxParticleDistanceS: maxParticleDistance,
-        goOn: doMore,
-        furthestPos: furthestPos
+        goOn: doMore
     });
     t0 = performance.now();
     positions = [];

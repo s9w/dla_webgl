@@ -7,7 +7,6 @@ var sphere;
 var container;
 var chart;
 var doReset = false;
-var deltaTarget = new THREE.Vector3(0,0,0);
 
 var params = {
     nParticlesPSec: 10,
@@ -148,8 +147,6 @@ function init() {
             }
             pointcloud.geometry.verticesNeedUpdate = true;
 
-            //deltaTarget = response.data.furthestPos;
-
             var dFrac = Math.log(nextParticleIndex)/Math.log(response.data.maxParticleDistanceS/2);
             if( dFrac<5 && dFrac>1 && (response.data.positions.length>0)){
                 chart.series[0].addPoint(dFrac);
@@ -209,13 +206,8 @@ function init() {
     animate();
 }
 
-function flyToCenter(){
-    controls.target.x += 0.1;
-}
-
 function animate() {
     requestAnimationFrame( animate );
-    flyToCenter();
     controls.update();
     render();
 }
