@@ -53,19 +53,20 @@ function getDockPos(){
     var startBackup = position.slice();
 
     // walk until on neighbor site
+    var compareRadius2 = Math.pow(spawnRadius+20,2);
     while(latticeNB[(position[0]+offset)*gridSize*gridSize + (position[1]+offset)*gridSize + (position[2]+offset)] == 0){
         var directionChoice = math.randomInt(3);
 
         // one step into any direction
         if(directionChoice == 0)
-            position[0] += math.randomInt(2)*2-1;
+            position[0] += (Math.random()<0.5)?1:-1;
         else if(directionChoice == 1)
-            position[1] += math.randomInt(2)*2-1;
+            position[1] += (Math.random()<0.5)?1:-1;
         else
-            position[2] += math.randomInt(2)*2-1;
+            position[2] += (Math.random()<0.5)?1:-1;
 
         // run out of sphere? back to initial start
-        if( (position[0]*position[0] + position[1]*position[1] + position[2]*position[2]) > Math.pow(spawnRadius+20,2) )
+        if( (position[0]*position[0] + position[1]*position[1] + position[2]*position[2]) > compareRadius2 )
             position = startBackup.slice();
     }
 
