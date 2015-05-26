@@ -30,6 +30,8 @@ function init(spawnRadiusLimitP){
 }
 
 function getStartPos(radius){
+    // Simple alg for starting on a sphere: random position inside cube. Throw
+    // away anything outside of sphere, then normalize.
     position[0] = math.random(-radius, radius);
     position[1] = math.random(-radius, radius);
     position[2] = math.random(-radius, radius);

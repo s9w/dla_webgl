@@ -21,7 +21,7 @@ function init_gui(container){
     var gui = new dat.GUI({ autoPlace: false });
 
     // particles per sec
-    var controller = gui.add(params, "nParticlesPSec", 0, 5000);
+    var controller = gui.add(params, "nParticlesPSec", 0, 1000);
     controller.name("Particles/sec");
     controller.step(1);
 
